@@ -1,9 +1,9 @@
-namespace Minimal.Application.Repositories;
+namespace Src.Application.Repositories;
 
-using Minimal.Domain.Entities;
+using Src.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-class TodoDb : DbContext
+public class TodoDb : DbContext
 {
     public TodoDb(DbContextOptions<TodoDb> options)
         : base(options) { }

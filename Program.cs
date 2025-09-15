@@ -1,8 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using dotenv.net;
 
-using Minimal.Application.Repositories;
-using Minimal.Domain.Entities;
+using Src.Application.Repositories;
+using Src.Infra.Http.Routes;
 
 DotEnv.Load();
 
@@ -36,69 +36,7 @@ if (app.Environment.IsDevelopment())
   });
 }
 
-app.MapGet("/", (ILogger<Program> logger) => TypedResults.Ok(new { data = "Hello World" }));
-
-RouteGroupBuilder todoGroup = app.MapGroup("/todo");
-
-todoGroup.MapGet("/", GetTodos);
-todoGroup.MapGet("/{id}", GetTargetTodo);
-todoGroup.MapGet("/complete", GetAllCompletedTodos);
-todoGroup.MapPost("/", CreateTodo);
-todoGroup.MapPut("/{id}", UpdateTodo);
-todoGroup.MapDelete("/{id}", DeleteTodo);
+HealthRoute.build(app);
+TodoRoute.build(app);
 
 app.Run();
-
-static async Task<IResult> GetTodos(TodoDb db)
-{
-  return TypedResults.Ok(await db.Todos.ToListAsync());
-}
-
-static async Task<IResult> GetTargetTodo(int id, TodoDb db)
-{
-  Todo? response = await db.Todos.FindAsync(id);
-
-  if (response is null) return TypedResults.NotFound();
-
-  return TypedResults.Ok(response);
-}
-
-static async Task<IResult> GetAllCompletedTodos(TodoDb db)
-{
-  List<Todo>? response = await db.Todos.Where(todo => todo.IsComplete).ToListAsync();
-
-  return TypedResults.Ok(response);
-}
-
-static async Task<IResult> CreateTodo(Todo todo, TodoDb db)
-{
-  db.Todos.Add(todo);
-  await db.SaveChangesAsync();
-
-  return TypedResults.Created($"/todo/${todo.Id}", todo);
-}
-
-static async Task<IResult> UpdateTodo(int id, Todo todo, TodoDb db)
-{
-  Todo? response = await db.Todos.FindAsync(id);
-
-  if (response is null) return TypedResults.NotFound();
-
-  response.Name = todo.Name;
-  response.IsComplete = todo.IsComplete;
-
-  await db.SaveChangesAsync();
-
-  return TypedResults.Ok(response);
-}
-
-static async Task<IResult> DeleteTodo(int id, TodoDb db)
-{
-  Todo? targetTodo = await db.Todos.FindAsync(id);
-
-  if (targetTodo is null) return TypedResults.NotFound();
-
-  db.Todos.Remove(targetTodo);
-  await db.SaveChangesAsync();
-  return TypedResults.NoContent();
-}

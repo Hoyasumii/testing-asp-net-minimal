@@ -1,4 +1,4 @@
-namespace Minimal.Domain.Entities;
+namespace Src.Domain.Entities;
 
 public class Todo
 {
