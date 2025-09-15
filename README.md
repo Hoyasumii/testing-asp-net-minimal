@@ -1,0 +1,2 @@
+- Sim, eu sei que esse código está muito acoplado e mal feito.
+- É a primeira vez q eu estou mexendo com ASP.NET, então eu estou mais preocupado em entender como as coisas funcionam
