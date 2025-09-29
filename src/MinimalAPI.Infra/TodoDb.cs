@@ -1,4 +1,4 @@
-namespace MinimalAPI.Infra.Abstractions;
+namespace MinimalAPI.Infra;
 
 using MinimalAPI.Domain.Todo;
 using Microsoft.EntityFrameworkCore;

@@ -1,7 +1,6 @@
 namespace MinimalAPI.Presentation;
 
 using dotenv.net;
-using Microsoft.AspNetCore;
 
 public class Bootstrap
 {
