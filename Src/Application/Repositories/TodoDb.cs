@@ -1,6 +1,6 @@
-namespace Src.Application.Repositories;
+namespace Application.Repositories;
 
-using Src.Domain.Entities;
+using Domain.Todo;
 using Microsoft.EntityFrameworkCore;
 
 public class TodoDb : DbContext

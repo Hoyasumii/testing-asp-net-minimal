@@ -1,13 +1,9 @@
-namespace Src.Domain.Todo;
+namespace Domain.Todo;
 
-public class Todo
+public class Todo(string name)
 {
   public string Id { get; } = Guid.NewGuid().ToString();
-  public string Name { get; protected set; }
+  public string Name { get; protected set; } = name;
   public bool IsComplete { get; set; } = false;
-
-  public Todo(string name)
-  {
-    Name = name;
-  } 
+  public DateTime CreatedAt { get; } = DateTime.Now;
 }

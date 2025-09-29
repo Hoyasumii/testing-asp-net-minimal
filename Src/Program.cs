@@ -1,12 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using dotenv.net;
 
-using Src.Application.Repositories;
-using Src.Infra.Http.Routes;
+using Application.Repositories;
+using Infra.Http.Routes;
 
 DotEnv.Load();
 
-int.TryParse(Environment.GetEnvironmentVariable("PORT") ?? "3000", out int PORT);
+bool envPortIsParsed = int.TryParse(Environment.GetEnvironmentVariable("PORT") ?? "3000", out int PORT);
+
+if (!envPortIsParsed)
+{
+  Environment.Exit(1);
+}
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
@@ -22,7 +27,6 @@ builder.Services.AddOpenApiDocument(config =>
 });
 
 WebApplication app = builder.Build();
-app.Urls.Add($"http://localhost:{PORT}");
 
 if (app.Environment.IsDevelopment())
 {
@@ -36,7 +40,7 @@ if (app.Environment.IsDevelopment())
   });
 }
 
-HealthRoute.build(app);
-TodoRoute.build(app);
+HealthRoute.Build(app);
+TodoRoute.Build(app);
 
-app.Run();
+app.Run($"http://localhost:{PORT}");

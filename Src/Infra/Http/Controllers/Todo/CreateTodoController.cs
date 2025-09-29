@@ -1,7 +1,7 @@
-namespace Src.Infra.Http.Controllers.Todo;
+namespace Infra.Http.Controllers.Todo;
 
 using Application.Repositories;
-using Domain.Entities;
+using Domain.Todo;
 
 public class CreateTodoController
 {

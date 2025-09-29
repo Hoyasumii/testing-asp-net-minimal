@@ -1,7 +1,7 @@
-namespace Src.Infra.Http.Controllers.Todo;
+namespace Infra.Http.Controllers.Todo;
 
 using Application.Repositories;
-using Domain.Entities;
+using Domain.Todo;
 
 public class UpdateTodoController
 {
@@ -11,7 +11,6 @@ public class UpdateTodoController
 
     if (targetTodo is null) return TypedResults.NotFound();
 
-    targetTodo.Name = todo.Name;
     targetTodo.IsComplete = todo.IsComplete;
 
     await db.SaveChangesAsync();

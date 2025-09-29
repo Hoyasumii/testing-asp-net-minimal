@@ -1,10 +1,10 @@
-namespace Src.Infra.Http.Routes;
+namespace Infra.Http.Routes;
 
-using Src.Infra.Http.Controllers.Todo;
+using Infra.Http.Controllers.Todo;
 
 public class TodoRoute
 {
-  public static void build(WebApplication app)
+  public static void Build(WebApplication app)
   {
     RouteGroupBuilder group = app.MapGroup("/todo");
 

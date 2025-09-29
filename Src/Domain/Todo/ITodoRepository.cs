@@ -1,4 +1,4 @@
-namespace Src.Domain.Todo;
+namespace Domain.Todo;
 
 public interface ITodoRepository
 {

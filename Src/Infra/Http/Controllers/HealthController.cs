@@ -1,4 +1,4 @@
-namespace Src.Infra.Http.Controllers;
+namespace Infra.Http.Controllers;
 
 public class HealthController
 {
