@@ -1,22 +1,25 @@
 namespace MinimalAPI.Presentation;
 
-using dotenv.net;
+using Microsoft.EntityFrameworkCore;
+using MinimalAPI.Infra;
+using MinimalAPI.Presentation.Plugins.Bootstrap;
 
 public class Bootstrap
 {
-  WebApplication App { get; }
+  public WebApplicationBuilder Builder { get; } = WebApplication.CreateBuilder();
 
-  public Bootstrap(string path = "../../.env")
+  public static Bootstrap Make()
   {
-    DotEnvOptions envOptions = new(envFilePaths: [path]);
+    var bootstrap = new Bootstrap();
 
-    DotEnv.Load(envOptions);
+    // Isso aqui é só pra validar um ponto
+    bootstrap.Builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
 
-    WebApplicationBuilder builder = WebApplication.CreateBuilder();
+    bootstrap.LoadEnv();
+    bootstrap.AddCors();
+    bootstrap.AddOpenAPI();
 
-    builder.Services.AddCors();
-    
-
-    App = builder.Build();
+    return bootstrap;
   }
+
 }

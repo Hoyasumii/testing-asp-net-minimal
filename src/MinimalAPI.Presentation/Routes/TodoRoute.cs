@@ -1,12 +1,13 @@
 using MinimalAPI.Presentation.Controllers.Todo;
+using MinimalAPI.Presentation.Plugins.Bootstrap;
 
 namespace MinimalAPI.Presentation.Routes;
 
-public class TodoRoute
+public static class TodoRoutePlugin
 {
-  public static void Build(WebApplication app)
+  public static void TodoRoute(this BootstrapApplication app)
   {
-    RouteGroupBuilder group = app.MapGroup("/todo");
+    RouteGroupBuilder group = app.App.MapGroup("/todo");
 
     group.MapGet("/", GetAllTodosController.Run);
     group.MapGet("/{id:int}", GetTodoController.Run);

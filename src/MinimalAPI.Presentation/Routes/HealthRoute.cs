@@ -2,11 +2,11 @@ using MinimalAPI.Presentation.Controllers;
 
 namespace MinimalAPI.Presentation.Routes;
 
-public class HealthRoute
+public static class HealthRoutePlugin
 {
-  public static void Build(WebApplication app)
+  public static void HealthRoute(this BootstrapApplication app)
   {
-    app.MapGet("/", HealthController.Run);
-    app.MapGet("/hello-world", HealthController.Run);
+    app.App.MapGet("/", HealthController.Run);
+    app.App.MapGet("/hello-world", HealthController.Run);
   }
 }
