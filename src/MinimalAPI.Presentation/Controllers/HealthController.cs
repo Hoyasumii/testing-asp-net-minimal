@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http;
-
 namespace MinimalAPI.Presentation.Controllers;
 
 public class HealthController

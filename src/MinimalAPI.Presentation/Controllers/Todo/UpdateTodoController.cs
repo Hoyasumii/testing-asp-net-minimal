@@ -2,7 +2,7 @@ namespace MinimalAPI.Presentation.Controllers.Todo;
 
 using Microsoft.AspNetCore.Http;
 using MinimalAPI.Domain.Todo;
-using MinimalAPI.Infra.Abstractions;
+using MinimalAPI.Infra;
 
 public class UpdateTodoController
 {

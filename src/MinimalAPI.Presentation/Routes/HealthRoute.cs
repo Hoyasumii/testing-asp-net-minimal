@@ -1,5 +1,4 @@
-using Microsoft.AspNetCore.Builder;
-using MinimalAPI.Infra.Http.Controllers;
+using MinimalAPI.Presentation.Controllers;
 
 namespace MinimalAPI.Presentation.Routes;
 

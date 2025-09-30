@@ -3,7 +3,7 @@ namespace MinimalAPI.Presentation.Controllers.Todo;
 using Domain.Todo;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using MinimalAPI.Infra.Abstractions;
+using MinimalAPI.Infra;
 
 public class GetAllTodosController
 {

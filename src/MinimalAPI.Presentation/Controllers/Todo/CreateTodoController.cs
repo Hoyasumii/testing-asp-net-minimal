@@ -1,7 +1,7 @@
 namespace MinimalAPI.Presentation.Controllers.Todo;
 
 using Microsoft.AspNetCore.Http;
-using MinimalAPI.Infra.Abstractions;
+using MinimalAPI.Infra;
 using MinimalAPI.Domain.Todo;
 
 public class CreateTodoController

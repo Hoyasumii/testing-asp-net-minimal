@@ -1,8 +1,6 @@
-namespace MinimalAPI.Presentation.Routes;
+using MinimalAPI.Presentation.Controllers.Todo;
 
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
-using MinimalAPI.Infra.Http.Controllers.Todo;
+namespace MinimalAPI.Presentation.Routes;
 
 public class TodoRoute
 {
